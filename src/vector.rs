@@ -3,11 +3,12 @@ use bytes::{BufMut, BytesMut};
 use std::cmp::PartialEq;
 use std::convert::TryInto;
 use std::error::Error;
+use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "diesel")]
 use crate::diesel_ext::VectorType;
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[cfg_attr(feature = "diesel", derive(FromSqlRow, AsExpression))]
 #[cfg_attr(feature = "diesel", diesel(sql_type = VectorType))]
 pub struct Vector(Vec<f32>);

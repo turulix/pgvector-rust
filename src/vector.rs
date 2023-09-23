@@ -9,6 +9,7 @@ use serde::{Deserialize, Serialize};
 use crate::diesel_ext::VectorType;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(transparent)]
 #[cfg_attr(feature = "diesel", derive(FromSqlRow, AsExpression))]
 #[cfg_attr(feature = "diesel", diesel(sql_type = VectorType))]
 pub struct Vector(Vec<f32>);
